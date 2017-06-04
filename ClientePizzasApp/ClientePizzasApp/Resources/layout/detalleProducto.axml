@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+    <TextView
+        android:text="Nombre"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtNombre"
+        android:textColor="@android:color/black"
+        android:textSize="40dp" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:id="@+id/imageView1"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+    <TextView
+        android:text="Descripcion"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtDescripcion"
+        android:gravity="center"
+        android:textSize="20dp" />
+    <TextView
+        android:text="Precio"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtPrecio"
+        android:textSize="20dp" />
+    <TextView
+        android:text="Categoría"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtCategoria"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:textColor="#ffff" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:id="@+id/linearLayout2">
+        <Button
+            android:text="-"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnMenos"
+            android:background="#b300b3"
+            android:textColor="#FFFFFF" />
+        <TextView
+            android:text="0"
+            android:id="@+id/txtCantidad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp" />
+        <Button
+            android:text="+"
+            android:id="@+id/btnMas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#b300b3"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/btnCarrito"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="AGREGAR AL CARRITO"
+        android:background="#b300b3"
+        android:textColor="#FFFFFF" />
+</LinearLayout>
