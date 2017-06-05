@@ -46,4 +46,14 @@
         android:text="Registrar"
         android:textColor="#FFFFFF"
         android:background="#5E2D79" />
+    <Button
+        android:id="@+id/btnInvitado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Invitado"
+        android:gravity="right"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:textColor="#b300b3"
+        android:background="#ffff" />
 </LinearLayout>

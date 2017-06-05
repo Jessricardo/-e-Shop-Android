@@ -12,7 +12,7 @@ namespace ClientePizzasApp
 	public class MainActivity : Activity
 	{
 		EditText txtPassword, txtCorreo;
-		Button btnEntrar, btnRegistar;
+		Button btnEntrar, btnRegistar, btnInvitado;
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
@@ -26,12 +26,19 @@ namespace ClientePizzasApp
 			txtCorreo = FindViewById<EditText>(Resource.Id.textView1);
 			txtPassword = FindViewById<EditText>(Resource.Id.txtContraseña);
 			btnRegistar = FindViewById<Button>(Resource.Id.btnRegistrar);
+			btnInvitado = FindViewById<Button>(Resource.Id.btnInvitado);
 			btnRegistar.Click += registrar;
+			btnInvitado.Click += invitado;
 			btnEntrar.Click += login;
 			var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
 			SetActionBar(toolbar);
 			ActionBar.Title = "Bienvenido";
 
+		}
+
+		void invitado(object sender, EventArgs e)
+		{
+            StartActivity(typeof(MenuActivity));
 		}
 
 		void login(object sender, EventArgs e)

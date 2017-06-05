@@ -161,6 +161,7 @@
     <AndroidResource Include="Resources\drawable\ic_shopping_cart_white_24dp.png" />
     <AndroidResource Include="Resources\drawable\ic_home_white_24dp.png" />
     <AndroidResource Include="Resources\layout\item_view_productoPartida.axml" />
+    <AndroidResource Include="Resources\layout\spinnerLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

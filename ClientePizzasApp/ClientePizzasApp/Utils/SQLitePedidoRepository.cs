@@ -31,7 +31,15 @@ namespace ClientePizzasApp
 		public List<user> Read()
 		{
 			var table = db.Table<user>();
-			return table.Select(c => c).ToList();
+			int cant=table.Count();
+			if (cant != 0)
+			{
+				return table.Select(c => c).ToList();
+			}
+			else
+			{
+				return null;
+			}
 		}
 
 		public user readById(Guid id)

@@ -17,6 +17,7 @@ using Android.Support.V7.Widget;
 using Java.Lang;
 using Newtonsoft.Json;
 using Square.Picasso;
+using Java.IO;
 
 namespace ClientePizzasApp
 {
@@ -92,30 +93,31 @@ user usuario;
 		}
 		public async void agregarPartida(object sender, EventArgs e)
 		{
+			try
+			{
 			string dbPath = System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "dbTienda.db3");
 			db = new SQLitePedidoRepository(dbPath);
 			List<user> usuarios = db.Read();
-			if (usuarios.Count == 0)
-			{
-				usuario = new user();
-				usuario.bandera = true;
-				usuario.tokenNoUsuario = Guid.NewGuid();
-				db.Crear(usuario);
 
-				Toast.MakeText(this, "guid hecho " + usuario.tokenNoUsuario.ToString(), ToastLength.Short).Show();
-			}
-			else
-			{
-				Toast.MakeText(this, "ya tienes guid ", ToastLength.Short).Show();
-			}
+				if (usuarios==null)
+				{
+					usuario = new user();
+					usuario.bandera = true;
+					usuario.tokenNoUsuario = Guid.NewGuid();
+					db.Crear(usuario);
 
+					//Toast.MakeText(this, "guid hecho " + usuario.tokenNoUsuario.ToString(), ToastLength.Short).Show();
+				}
+				else
+				{
+					//Toast.MakeText(this, "ya tienes guid ", ToastLength.Short).Show();
+				}
+			List<user> usuarios2 = db.Read();
 			PartidasModel partida = new PartidasModel();
 			partida.cantidad = Convert.ToInt32(txtcantidad.Text);
 			partida.productoId = id.ToString();
-			partida.idCarrito = usuarios[0].tokenNoUsuario.ToString();
+			partida.idCarrito = usuarios2[0].tokenNoUsuario.ToString();
 			partida.id = "";
-
-
 			string baseurl = "http://pushstart.azurewebsites.net/Carrito/agregar";
 			var Client = new HttpClient();
 			Client.MaxResponseContentBufferSize = 256000;
@@ -126,13 +128,24 @@ user usuario;
 
 			if (response.IsSuccessStatusCode)
 			{
-					Toast.MakeText(this, "Exito", ToastLength.Long).Show();
+				Toast.MakeText(this, "Exito", ToastLength.Short).Show();
 			}
 			else
 			{
-				Toast.MakeText(this, "Ocurrio un error :c", ToastLength.Long).Show();
+				Toast.MakeText(this, "Ocurrio un error :c", ToastLength.Short).Show();
 
+}
+			Intent intento2 = new Intent(this, typeof(MenuActivity));
+			StartActivity(intento2);
 			}
+			catch (System.Exception ex)
+			{ Toast.MakeText(this, "funciono", ToastLength.Short).Show();}
+
+
+
+
+
+
 		}
 
 	

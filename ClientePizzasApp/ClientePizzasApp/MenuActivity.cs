@@ -63,7 +63,7 @@ namespace ClientePizzasApp
 			//CATEGORIAS spinner
 			classes2 = await getCategorias2();
 			adapter = new ArrayAdapter<string>(
-								this, Android.Resource.Layout.SimpleSpinnerItem, classes2);
+				this, Android.Resource.Layout.SimpleListItem1, classes2);
 			adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
 			spCategorias.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinner_ItemSelected);
 			spCategorias.Adapter = adapter;

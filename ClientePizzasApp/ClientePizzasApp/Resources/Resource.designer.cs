@@ -173,8 +173,11 @@ namespace ClientePizzasApp
 			// aapt resource value: 0x7f060010
 			public const int btnCarrito = 2131099664;
 			
-			// aapt resource value: 0x7f060028
-			public const int btnComprar = 2131099688;
+			// aapt resource value: 0x7f060029
+			public const int btnComprar = 2131099689;
+			
+			// aapt resource value: 0x7f060025
+			public const int btnInvitado = 2131099685;
 			
 			// aapt resource value: 0x7f06000f
 			public const int btnMas = 2131099663;
@@ -206,26 +209,26 @@ namespace ClientePizzasApp
 			// aapt resource value: 0x7f06000c
 			public const int linearLayout2 = 2131099660;
 			
-			// aapt resource value: 0x7f060029
-			public const int menu_edit = 2131099689;
+			// aapt resource value: 0x7f06002a
+			public const int menu_edit = 2131099690;
+			
+			// aapt resource value: 0x7f06002c
+			public const int menu_preferences = 2131099692;
 			
 			// aapt resource value: 0x7f06002b
-			public const int menu_preferences = 2131099691;
-			
-			// aapt resource value: 0x7f06002a
-			public const int menu_save = 2131099690;
+			public const int menu_save = 2131099691;
 			
 			// aapt resource value: 0x7f060023
 			public const int myButton = 2131099683;
 			
-			// aapt resource value: 0x7f060026
-			public const int recyclerView = 2131099686;
-			
 			// aapt resource value: 0x7f060027
-			public const int recyclerViewCarrito = 2131099687;
+			public const int recyclerView = 2131099687;
 			
-			// aapt resource value: 0x7f060025
-			public const int spCategorias = 2131099685;
+			// aapt resource value: 0x7f060028
+			public const int recyclerViewCarrito = 2131099688;
+			
+			// aapt resource value: 0x7f060026
+			public const int spCategorias = 2131099686;
 			
 			// aapt resource value: 0x7f060017
 			public const int textView1 = 2131099671;
@@ -340,7 +343,10 @@ namespace ClientePizzasApp
 			public const int misProductosCarritos = 2130968584;
 			
 			// aapt resource value: 0x7f040009
-			public const int toolbar = 2130968585;
+			public const int spinnerLayout = 2130968585;
+			
+			// aapt resource value: 0x7f04000a
+			public const int toolbar = 2130968586;
 			
 			static Layout()
 			{
