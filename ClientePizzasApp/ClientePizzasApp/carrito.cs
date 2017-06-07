@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Preferences;
 using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
@@ -19,9 +20,9 @@ namespace ClientePizzasApp
 	[Activity(Label = "carrito")]
 	public class carrito : Activity
 	{
-IPedidoRepository db;
+		IPedidoRepository db;
 		Button btnCarrito;
-	
+
 		user usuario;
 		RecyclerView mRecyclerView;
 		RecyclerView.LayoutManager mLayoutManager;
@@ -42,8 +43,8 @@ IPedidoRepository db;
 			SetActionBar(toolbar);
 			ActionBar.Title = "Carrito";
 			btnComprar = FindViewById<Button>(Resource.Id.btnComprar);
-			mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recyclerViewCarrito);
 
+			mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recyclerViewCarrito);
 			mLayoutManager = new LinearLayoutManager(this);
 			mRecyclerView.SetLayoutManager(mLayoutManager);
 			var progressDialog = ProgressDialog.Show(this, "Espere un momento", "Obteniendo PRODUCTOS", true);
@@ -54,55 +55,61 @@ IPedidoRepository db;
 
 			ProductList = await obtenerProductosPorPartidas();
 
-			//if (ProductList.Count > 0)
-			//{
-			//	Toast.MakeText(this,ProductList[0].Nombre,ToastLength.Long).Show();
-			//}
+
 			ProductosAdapter = new ProductosAdapterPartida(ProductList, this, partidasList);
 			ProductosAdapter.ItemClick += OnItemClick;
 
 			mRecyclerView.SetAdapter(ProductosAdapter);
 			progressDialog.Dismiss();
+			btnComprar.Click += comprar;
+		}
+
+		public async void comprar(object sender, EventArgs e)
+		{
+			
+			int a = await obtenerCantidadPorProductosPorPartidas();
+			double total =  await obtenerTotalPorProductosPorPartidas();
+
+			var intento = new Intent(this, typeof(pago));
+			Bundle contenedor = new Bundle();
+			contenedor.PutInt("cantidadProductos", a);
+			contenedor.PutDouble("total", total);
+			intento.PutExtra("bundle", contenedor);
+			StartActivity(intento);
 		}
 
 		protected override void OnResume()
 		{
 			base.OnResume();
-			//mLayoutManager = new LinearLayoutManager(this);
-			//mRecyclerView.SetLayoutManager(mLayoutManager);
-			//var progressDialog = ProgressDialog.Show(this, "Espere un momento", "Obteniendo PRODUCTOS", true);
-			//ProductosAdapter = new ProductosAdapterPartida(ProductList, this, partidasList);
-			//ProductosAdapter.ItemClick += OnItemClick;
-			//mRecyclerView.SetAdapter(ProductosAdapter);
-			//progressDialog.Dismiss();
+
 		}
 
 
 
 		void OnItemClick(object sender, int e)
 		{
-					PartidasModel a = partidasList[e];
-					ProductModel producto = ProductList[e];
-					var intento = new Intent(this, typeof(detalleProductoCompra));
-					Bundle contenedor = new Bundle();
-					contenedor.PutString("id", producto.Codigo);
-					contenedor.PutString("nombre", producto.Nombre);
-					contenedor.PutString("categoria", producto.Categoria);
-					contenedor.PutString("precio", producto.Precio.ToString());
-					contenedor.PutString("descripcion", producto.Descripcion);
-					contenedor.PutString("idPartida", a.id);
-					contenedor.PutString("url", producto.url);
-					//contenedor.PutString("idProducto", a.productoId);
-					contenedor.PutInt("cantidad", a.cantidad );
-					intento.PutExtra("bundle", contenedor);
-					StartActivity(intento);	
+			PartidasModel a = partidasList[e];
+			ProductModel producto = ProductList[e];
+			var intento = new Intent(this, typeof(detalleProductoCompra));
+			Bundle contenedor = new Bundle();
+			contenedor.PutString("id", producto.Codigo);
+			contenedor.PutString("nombre", producto.Nombre);
+			contenedor.PutString("categoria", producto.Categoria);
+			contenedor.PutString("precio", producto.Precio.ToString());
+			contenedor.PutString("descripcion", producto.Descripcion);
+			contenedor.PutString("idPartida", a.id);
+			contenedor.PutString("url", producto.url);
+			//contenedor.PutString("idProducto", a.productoId);
+			contenedor.PutInt("cantidad", a.cantidad);
+			intento.PutExtra("bundle", contenedor);
+			StartActivity(intento);
 		}
 		public async Task<List<ProductModel>> obtenerProductosPorPartidas()
 		{
-			
-			List<ProductModel> a= new List<ProductModel>();
-		
-			for (int i = 0; i < partidasList.Count;i++)
+
+			List<ProductModel> a = new List<ProductModel>();
+
+			for (int i = 0; i < partidasList.Count; i++)
 			{
 
 				ProductModel producto = await obtenerProductosPorId(partidasList.ElementAt(i).productoId);
@@ -112,6 +119,37 @@ IPedidoRepository db;
 			return a;
 		}
 
+		public async Task<double> obtenerTotalPorProductosPorPartidas()
+		{
+
+			double total = 0;
+
+			for (int i = 0; i < partidasList.Count; i++)
+			{
+
+				ProductModel producto = await obtenerProductosPorId(partidasList.ElementAt(i).productoId);
+				total += producto.Precio * partidasList.ElementAt(i).cantidad;
+			
+
+			}
+			return total;        
+	}
+
+		public async Task<int> obtenerCantidadPorProductosPorPartidas()
+		{
+
+			int total = 0;
+
+			for (int i = 0; i < partidasList.Count; i++)
+			{
+
+				ProductModel producto = await obtenerProductosPorId(partidasList.ElementAt(i).productoId);
+				total +=  partidasList.ElementAt(i).cantidad;
+
+
+			}
+			return total;
+			}
 
 		public async Task<ProductModel> obtenerProductosPorId(string id)
 		{
@@ -130,12 +168,20 @@ IPedidoRepository db;
 		}
 		public async Task<List<PartidasModel>> obtenerPartidas()
 		{
-			string dbPath = System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "dbTienda.db3");
-			db = new SQLitePedidoRepository(dbPath);
-			List<user> usuarios = db.Read();
-			if (usuarios.Count > 0)
+			
+			string token = "";
+
+		
+				ISharedPreferences preferences = PreferenceManager.GetDefaultSharedPreferences(this);
+
+				 if (preferences.GetBoolean("is_login", false))
 			{
-				string token = usuarios[0].tokenNoUsuario.ToString();
+				token = preferences.GetString("token", "");
+			}
+			else
+			{ 
+				token = preferences.GetString("NotToken", "");
+			}
 				string baseurl = "http://pushstart.azurewebsites.net/Carrito/detalles/?id=" + token;
 				var Client = new HttpClient();
 				Client.MaxResponseContentBufferSize = 256000;
@@ -151,13 +197,6 @@ IPedidoRepository db;
 				{
 					return null;
 				}
-			}
-			else
-			{ 
-					return null;
-			}
-
-
 
 		}
 public async Task<List<ProductModel>> getProductos()
@@ -194,16 +233,26 @@ public async Task<List<ProductModel>> getProductos()
 			if (item.TitleFormatted.ToString() == "Cerrar sesión")
 			{
 				Intent intento = new Intent(this, typeof(MainActivity));
-				StartActivity(Intent);
+				StartActivity(intento);
 			}
 			else if (item.TitleFormatted.ToString() == "Save")
 			{
 				Intent intento = new Intent(this, typeof(carrito));
 				StartActivity(intento);
 			}
-			else
+			else if(item.TitleFormatted.ToString()=="Edit")
 			{
 				Intent intento = new Intent(this, typeof(MenuActivity));
+				StartActivity(intento);
+			}
+			else if(item.TitleFormatted.ToString()=="Perfil")
+			{
+			//	Intent intento = new Intent(this, typeof(MenuActivity));
+			//	StartActivity(intento);
+			}
+			else if(item.TitleFormatted.ToString()=="Pedidos")
+			{
+				Intent intento = new Intent(this, typeof(pedidos));
 				StartActivity(intento);
 			}
 	return base.OnOptionsItemSelected(item);

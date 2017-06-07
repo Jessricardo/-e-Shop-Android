@@ -8,6 +8,7 @@ using System.Text;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Preferences;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
@@ -23,7 +24,8 @@ IPedidoRepository db;
 		TextView txtNombre, txtDescripcion, txtCategoria, txtPrecio;
 		Button btnQuitar;
 		string idProducto;
-		string idPartida, url;
+		string idPartida, url, nombre;
+		double precio;
 		int cantidad;
 		ImageView img;
 		protected override void OnCreate(Bundle savedInstanceState)
@@ -45,6 +47,8 @@ IPedidoRepository db;
 			Bundle paquete = Intent.GetBundleExtra("bundle");
 			txtNombre.Text = paquete.GetString("nombre");
 			idProducto= paquete.GetString("id");
+			precio=Convert.ToDouble(paquete.GetString("precio"));
+			nombre=paquete.GetString("nombre");
 			txtPrecio.Text = "$"+paquete.GetString("precio");
 			txtCategoria.Text = paquete.GetString("categoria");
 			txtDescripcion.Text = paquete.GetString("descripcion");
@@ -57,14 +61,28 @@ IPedidoRepository db;
 		void quitar(object sender, EventArgs e)
 		{
 			
-			string dbPath = System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "dbTienda.db3");
-			db = new SQLitePedidoRepository(dbPath);
-			List<user> usuarios = db.Read();
+			//string dbPath = System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "dbTienda.db3");
+			//db = new SQLitePedidoRepository(dbPath);
+			//List<user> usuarios = db.Read();
+			ISharedPreferences preferences = PreferenceManager.GetDefaultSharedPreferences(this);
+				string myValue="";
 			PartidasModel partida = new PartidasModel();
 			partida.cantidad = cantidad;
 			partida.productoId = idProducto;
-			partida.idCarrito = usuarios[0].tokenNoUsuario.ToString();
+			if (preferences.GetBoolean("is_login", false))
+			{
+				myValue = preferences.GetString("token", "");
+			}
+			else
+			{ 
+				myValue = preferences.GetString("NotToken", "");
+			}
+			//partida.idCarrito = usuarios[0].tokenUsuario.ToString();
+			partida.idCarrito = myValue;
 			partida.id = idPartida;
+			partida.costo = precio * cantidad;
+			partida.nombre = nombre;
+
 			string baseurl = "http://pushstart.azurewebsites.net/Carrito/quitar";
 			var Client = new HttpClient();
 			Client.MaxResponseContentBufferSize = 256000;
@@ -97,16 +115,26 @@ IPedidoRepository db;
 			if (item.TitleFormatted.ToString() == "Cerrar sesión")
 				{
 				Intent intento = new Intent(this, typeof(MainActivity));
-				StartActivity(Intent);
+				StartActivity(intento);
 			}
 			else if (item.TitleFormatted.ToString() == "Save")
 			{
 				Intent intento = new Intent(this, typeof(carrito));
 				StartActivity(intento);
 			}
-			else
+			else if(item.TitleFormatted.ToString()=="Edit")
 			{
 				Intent intento = new Intent(this, typeof(MenuActivity));
+				StartActivity(intento);
+			}
+			else if(item.TitleFormatted.ToString()=="Perfil")
+			{
+			//	Intent intento = new Intent(this, typeof(MenuActivity));
+			//	StartActivity(intento);
+			}
+			else if(item.TitleFormatted.ToString()=="Pedidos")
+			{
+				Intent intento = new Intent(this, typeof(pedidos));
 				StartActivity(intento);
 			}
 		return base.OnOptionsItemSelected(item);

@@ -25,14 +25,14 @@ namespace ClientePizzasApp
 
 		public void Delete(user c)
 		{
-			db.Delete<user>(c.tokenNoUsuario);
+			db.Delete<user>(c.tokenUsuario);
 		}
 
 		public List<user> Read()
 		{
 			var table = db.Table<user>();
 			int cant=table.Count();
-			if (cant != 0)
+			if (cant > 0)
 			{
 				return table.Select(c => c).ToList();
 			}
@@ -42,9 +42,9 @@ namespace ClientePizzasApp
 			}
 		}
 
-		public user readById(Guid id)
+		public user readById(string id)
 		{
-			return db.Table<user>().FirstOrDefault(t => t.tokenNoUsuario == id);
+			return db.Table<user>().FirstOrDefault(t => t.tokenUsuario == id);
 		}
 
 		public void Update(user c) 
@@ -60,6 +60,11 @@ namespace ClientePizzasApp
 		}
 
 		public object LeerPedidoPorId(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public user readById(Guid id)
 		{
 			throw new NotImplementedException();
 		}

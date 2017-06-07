@@ -10,8 +10,19 @@
        android:icon="@drawable/ic_shopping_cart_white_24dp"
        android:showAsAction="ifRoom"
        android:title="Save" />
+	<item
+       android:id="@+id/perfil"
+       android:showAsAction="ifRoom"
+		android:icon="@drawable/ic_account_circle_white_24dp"
+       android:title="Perfil" />
+	<item
+       android:id="@+id/pedidos"
+       android:showAsAction="ifRoom"
+		android:icon="@drawable/ic_receipt_white_24dp"
+       android:title="Pedidos" />
   <item
        android:id="@+id/menu_preferences"
        android:showAsAction="never"
        android:title="Cerrar sesión" />
+	
 </menu>

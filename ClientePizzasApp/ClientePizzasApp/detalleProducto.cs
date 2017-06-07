@@ -18,6 +18,7 @@ using Java.Lang;
 using Newtonsoft.Json;
 using Square.Picasso;
 using Java.IO;
+using Android.Preferences;
 
 namespace ClientePizzasApp
 {
@@ -28,7 +29,8 @@ user usuario;
 
 		TextView txtNombre, txtCategoria, txtPrecio, txtDescripcion, txtcantidad;
 		Button btnCarrito, btnMas, btnMenos;
-		string id, url;
+		string id, url, nombre;
+		double costo;
 		int cantidad = 1;
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -53,8 +55,10 @@ user usuario;
 
 			//recibiendo valores de la vista menu_activity
 			Bundle paquete = Intent.GetBundleExtra("bundle");
-			txtNombre.Text = paquete.GetString("nombre");
+			nombre = paquete.GetString("nombre");
+			txtNombre.Text = nombre;
 			id= paquete.GetString("id");
+			costo= Convert.ToDouble(paquete.GetString("precio"));
 			txtPrecio.Text = "$"+paquete.GetString("precio");
 			txtCategoria.Text = paquete.GetString("categoria");
 			txtDescripcion.Text = paquete.GetString("descripcion");
@@ -70,6 +74,7 @@ user usuario;
 			progressDialog.Dismiss();
 			//android:src="@android:drawable/ic_menu_gallery"
 
+		//	Toast.MakeText(this, usuarios[0].tokenUsuario,ToastLength.Long).Show();
 		}
 
 		public void mas(object sender, EventArgs e)
@@ -93,58 +98,52 @@ user usuario;
 		}
 		public async void agregarPartida(object sender, EventArgs e)
 		{
-			try
+			
+
+			ISharedPreferences preferences = PreferenceManager.GetDefaultSharedPreferences(this);
+
+
+			string myValue = "";
+	
+					PartidasModel partida = new PartidasModel();
+					partida.cantidad = Convert.ToInt32(txtcantidad.Text);
+					partida.productoId = id.ToString();
+			if (preferences.GetBoolean("is_login", false))
 			{
-			string dbPath = System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "dbTienda.db3");
-			db = new SQLitePedidoRepository(dbPath);
-			List<user> usuarios = db.Read();
-
-				if (usuarios==null)
-				{
-					usuario = new user();
-					usuario.bandera = true;
-					usuario.tokenNoUsuario = Guid.NewGuid();
-					db.Crear(usuario);
-
-					//Toast.MakeText(this, "guid hecho " + usuario.tokenNoUsuario.ToString(), ToastLength.Short).Show();
-				}
-				else
-				{
-					//Toast.MakeText(this, "ya tienes guid ", ToastLength.Short).Show();
-				}
-			List<user> usuarios2 = db.Read();
-			PartidasModel partida = new PartidasModel();
-			partida.cantidad = Convert.ToInt32(txtcantidad.Text);
-			partida.productoId = id.ToString();
-			partida.idCarrito = usuarios2[0].tokenNoUsuario.ToString();
-			partida.id = "";
-			string baseurl = "http://pushstart.azurewebsites.net/Carrito/agregar";
-			var Client = new HttpClient();
-			Client.MaxResponseContentBufferSize = 256000;
-			var uri = new Uri(baseurl);
-			var json = JsonConvert.SerializeObject(partida);
-			StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-			var response = Client.PutAsync(uri, content).Result;  
-
-			if (response.IsSuccessStatusCode)
-			{
-				Toast.MakeText(this, "Exito", ToastLength.Short).Show();
+				myValue = preferences.GetString("token", "");
 			}
 			else
-			{
-				Toast.MakeText(this, "Ocurrio un error :c", ToastLength.Short).Show();
+			{ 
+				myValue = preferences.GetString("NotToken", "");
+			}
+					partida.idCarrito = myValue;
+					partida.id = Guid.NewGuid().ToString();
+					partida.nombre = nombre;
+					//partida.costo = 12;
+					partida.pedidoId = "hola";
+					partida.costo = costo * Convert.ToInt32(txtcantidad.Text);
+					string baseurl = "http://pushstart.azurewebsites.net/Carrito/agregar";
+					var Client = new HttpClient();
+					Client.MaxResponseContentBufferSize = 256000;
+					var uri = new Uri(baseurl);
+					var json = JsonConvert.SerializeObject(partida);
+					StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+					var response = Client.PostAsync(uri, content).Result;
 
-}
+					if (response.IsSuccessStatusCode)
+					{
+						Toast.MakeText(this, "Exito", ToastLength.Short).Show();
+					}
+					else
+					{
+						Toast.MakeText(this, "Ocurrio un error :c", ToastLength.Short).Show();
+
+					}
+				
+				
+			
 			Intent intento2 = new Intent(this, typeof(MenuActivity));
 			StartActivity(intento2);
-			}
-			catch (System.Exception ex)
-			{ Toast.MakeText(this, "funciono", ToastLength.Short).Show();}
-
-
-
-
-
 
 		}
 
@@ -160,16 +159,26 @@ user usuario;
 				if (item.TitleFormatted.ToString() == "Cerrar sesión")
 					{
 						Intent intento = new Intent(this, typeof(MainActivity));
-						StartActivity(Intent);
+						StartActivity(intento);
 					}
 			else if (item.TitleFormatted.ToString() == "Save")
 			{
 				Intent intento = new Intent(this, typeof(carrito));
 				StartActivity(intento);
 			}
-			else
+			else if(item.TitleFormatted.ToString()=="Edit")
 			{
 				Intent intento = new Intent(this, typeof(MenuActivity));
+				StartActivity(intento);
+			}
+			else if(item.TitleFormatted.ToString()=="Perfil")
+			{
+			//	Intent intento = new Intent(this, typeof(MenuActivity));
+			//	StartActivity(intento);
+			}
+			else if(item.TitleFormatted.ToString()=="Pedidos")
+			{
+				Intent intento = new Intent(this, typeof(pedidos));
 				StartActivity(intento);
 			}
 				return base.OnOptionsItemSelected(item);

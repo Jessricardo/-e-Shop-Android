@@ -117,12 +117,21 @@ namespace ClientePizzasApp
 				Intent intento = new Intent(this, typeof(carrito));
 				StartActivity(intento);
 			}
-			else
+			else if(item.TitleFormatted.ToString()=="Edit")
 			{
 				Intent intento = new Intent(this, typeof(MenuActivity));
 				StartActivity(intento);
 			}
-
+			else if(item.TitleFormatted.ToString()=="Perfil")
+			{
+			//	Intent intento = new Intent(this, typeof(MenuActivity));
+			//	StartActivity(intento);
+			}
+			else if(item.TitleFormatted.ToString()=="Pedidos")
+			{
+				Intent intento = new Intent(this, typeof(pedidos));
+				StartActivity(intento);
+			}
 	return base.OnOptionsItemSelected(item);
 }
 			public async Task<string[]> getCategorias2()

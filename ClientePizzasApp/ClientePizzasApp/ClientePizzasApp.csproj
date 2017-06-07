@@ -124,6 +124,12 @@
     <Compile Include="Utils\DetalleCarritoProductoAdapter.cs" />
     <Compile Include="Models\user.cs" />
     <Compile Include="Utils\ProductosAdapterPartida.cs" />
+    <Compile Include="pago.cs" />
+    <Compile Include="login2.cs" />
+    <Compile Include="detalleYaPa.cs" />
+    <Compile Include="Utils\pedidoAdapter.cs" />
+    <Compile Include="pedidos.cs" />
+    <Compile Include="segundaProductos.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -162,6 +168,14 @@
     <AndroidResource Include="Resources\drawable\ic_home_white_24dp.png" />
     <AndroidResource Include="Resources\layout\item_view_productoPartida.axml" />
     <AndroidResource Include="Resources\layout\spinnerLayout.axml" />
+    <AndroidResource Include="Resources\layout\pagar.axml" />
+    <AndroidResource Include="Resources\layout\login2.axml" />
+    <AndroidResource Include="Resources\layout\detalleYaPago.axml" />
+    <AndroidResource Include="Resources\drawable\ic_account_circle_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable\ic_receipt_white_24dp.png" />
+    <AndroidResource Include="Resources\layout\item_view_pedidos.axml" />
+    <AndroidResource Include="Resources\layout\pedidos.axml" />
+    <AndroidResource Include="Resources\layout\pedidoProductosLista.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
