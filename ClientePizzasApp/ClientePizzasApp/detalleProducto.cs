@@ -116,7 +116,7 @@ user usuario;
 			{ 
 				myValue = preferences.GetString("NotToken", "");
 			}
-					partida.idCarrito = myValue;
+					partida.idCarrito = preferences.GetString("name","");
 					partida.id = Guid.NewGuid().ToString();
 					partida.nombre = nombre;
 					//partida.costo = 12;

@@ -176,7 +176,7 @@ namespace ClientePizzasApp
 
 				 if (preferences.GetBoolean("is_login", false))
 			{
-				token = preferences.GetString("token", "");
+				token = preferences.GetString("name", "");
 			}
 			else
 			{ 
