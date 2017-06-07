@@ -173,8 +173,8 @@ user usuario;
 			}
 			else if(item.TitleFormatted.ToString()=="Perfil")
 			{
-			//	Intent intento = new Intent(this, typeof(MenuActivity));
-			//	StartActivity(intento);
+Intent intento = new Intent(this, typeof(perfil));
+			StartActivity(intento);
 			}
 			else if(item.TitleFormatted.ToString()=="Pedidos")
 			{

@@ -130,6 +130,7 @@
     <Compile Include="Utils\pedidoAdapter.cs" />
     <Compile Include="pedidos.cs" />
     <Compile Include="segundaProductos.cs" />
+    <Compile Include="perfil.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -176,6 +177,7 @@
     <AndroidResource Include="Resources\layout\item_view_pedidos.axml" />
     <AndroidResource Include="Resources\layout\pedidos.axml" />
     <AndroidResource Include="Resources\layout\pedidoProductosLista.axml" />
+    <AndroidResource Include="Resources\layout\perfilLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

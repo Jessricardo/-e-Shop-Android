@@ -12,6 +12,7 @@ using System.Net.Http.Headers;
 using Xamarin.Android.Net;
 using System.Collections.Generic;
 using Android.Preferences;
+using Square.Picasso;
 
 namespace ClientePizzasApp
 {
@@ -22,6 +23,7 @@ namespace ClientePizzasApp
 		IPedidoRepository db;
 		EditText txtPassword, txtCorreo;
 		Button btnEntrar, btnRegistar, btnInvitado;
+		ImageView imgLogo;
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
@@ -36,13 +38,15 @@ namespace ClientePizzasApp
 			txtPassword = FindViewById<EditText>(Resource.Id.txtContraseña);
 			btnRegistar = FindViewById<Button>(Resource.Id.btnRegistrar);
 			btnInvitado = FindViewById<Button>(Resource.Id.btnInvitado);
+			imgLogo = FindViewById<ImageView>(Resource.Id.imgMain);
 			btnRegistar.Click += registrar;
 			btnInvitado.Click += invitado;
 			btnEntrar.Click += login;
 			var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
 			SetActionBar(toolbar);
-			ActionBar.Title = "Bienvenido";
-
+			ActionBar.Title = "Acceso";
+			Picasso.With(this).Load("http://itcs98g1.blob.core.windows.net/imagenes/PushStartLogo.png").Resize(400, 300).Into(imgLogo);
+			btnInvitado.Visibility = ViewStates.Invisible;
 		}
 
 		async void invitado(object sender, EventArgs e)
@@ -68,6 +72,7 @@ namespace ClientePizzasApp
 		{
 			try
 			{
+//var progressDialog = ProgressDialog.Show(this, "Espere un momento", "Validando usuario", true);
 				Usuario user1 = new Usuario();
 				user1.contraseña = txtPassword.Text;
 				user1.nombre = txtCorreo.Text;
@@ -94,13 +99,13 @@ namespace ClientePizzasApp
 					editor.PutString("name", txtCorreo.Text);
 					editor.PutString("token", items.APIKey);
 
-					Toast.MakeText(this, items.APIKey, ToastLength.Long).Show();
+				//	Toast.MakeText(this, items.APIKey, ToastLength.Long).Show();
 
 
 					editor.Apply();
 					ISharedPreferences preferences = PreferenceManager.GetDefaultSharedPreferences(this);
 					String myValue = preferences.GetString("token", "");
-					Toast.MakeText(this, "estas logueado con" + myValue, ToastLength.Long).Show();
+				//	Toast.MakeText(this, "estas logueado con" + myValue, ToastLength.Long).Show();
 					Intent intento = new Intent(this, typeof(MenuActivity));
 					//Bundle paquete = new Bundle();
 					//paquete.PutString("tokenLogin", items.APIKey);
@@ -112,10 +117,11 @@ namespace ClientePizzasApp
 					//Toast.MakeText(this, "No lo se, me pareces fake", ToastLength.Short).Show();
 
 				}
+			//	progressDialog.Dismiss();
 			}
 			catch (Exception en)
 			{
-				Toast.MakeText(this, "No lo se, me pareces fake ", ToastLength.Short).Show();
+				Toast.MakeText(this, "Usuario y/o contraseña son erroneas ", ToastLength.Short).Show();
 			}
 
 

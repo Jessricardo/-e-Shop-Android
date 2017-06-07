@@ -6,6 +6,11 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:id="@+id/imgMain"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
     <TextView
         android:text="Bienvenidos a Push Start"
         android:layout_width="match_parent"
@@ -25,34 +30,45 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txtUsuario"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" />
     <EditText
         android:hint="Contraseña"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txtContraseña"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" />
     <Button
         android:id="@+id/myButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ENTRAR"
-        android:background="#b300b3"
-        android:textColor="#FFFFFF" />
+        android:elevation="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#16BD5B"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="15dp" />
     <Button
         android:id="@+id/btnRegistrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:text="Registrar"
         android:textColor="#FFFFFF"
-        android:background="#5E2D79" />
+        android:background="#3E6AEE" />
     <Button
         android:id="@+id/btnInvitado"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_marginRight="20dp"
         android:layout_height="wrap_content"
         android:text="Invitado"
         android:gravity="right"
-        android:layout_marginRight="10dp"
+        android:layout_gravity="right"
         android:layout_marginTop="15dp"
         android:textColor="#b300b3"
         android:background="#ffff" />

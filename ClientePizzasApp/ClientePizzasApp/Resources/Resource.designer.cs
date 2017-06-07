@@ -173,20 +173,23 @@ namespace ClientePizzasApp
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f06002a
-			public const int bienvenido = 2131099690;
+			// aapt resource value: 0x7f06002c
+			public const int bienvenido = 2131099692;
 			
 			// aapt resource value: 0x7f060010
 			public const int btnCarrito = 2131099664;
 			
-			// aapt resource value: 0x7f060033
-			public const int btnComprar = 2131099699;
+			// aapt resource value: 0x7f060035
+			public const int btnComprar = 2131099701;
 			
-			// aapt resource value: 0x7f06002f
-			public const int btnInvitado = 2131099695;
+			// aapt resource value: 0x7f060019
+			public const int btnDetallesAmenu = 2131099673;
 			
-			// aapt resource value: 0x7f060029
-			public const int btnInvitadoLogin2 = 2131099689;
+			// aapt resource value: 0x7f060031
+			public const int btnInvitado = 2131099697;
+			
+			// aapt resource value: 0x7f06002a
+			public const int btnInvitadoLogin2 = 2131099690;
 			
 			// aapt resource value: 0x7f06000f
 			public const int btnMas = 2131099663;
@@ -194,20 +197,23 @@ namespace ClientePizzasApp
 			// aapt resource value: 0x7f06000d
 			public const int btnMenos = 2131099661;
 			
+			// aapt resource value: 0x7f06003f
+			public const int btnPerfilPedidos = 2131099711;
+			
 			// aapt resource value: 0x7f060016
 			public const int btnQuitar = 2131099670;
 			
-			// aapt resource value: 0x7f06002e
-			public const int btnRegistrar = 2131099694;
+			// aapt resource value: 0x7f060030
+			public const int btnRegistrar = 2131099696;
 			
-			// aapt resource value: 0x7f060028
-			public const int btnRegistrarLogin2 = 2131099688;
+			// aapt resource value: 0x7f060029
+			public const int btnRegistrarLogin2 = 2131099689;
 			
 			// aapt resource value: 0x7f060008
 			public const int imageView1 = 2131099656;
 			
-			// aapt resource value: 0x7f060020
-			public const int imageView12 = 2131099680;
+			// aapt resource value: 0x7f060021
+			public const int imageView12 = 2131099681;
 			
 			// aapt resource value: 0x7f060012
 			public const int imageView1P = 2131099666;
@@ -215,86 +221,89 @@ namespace ClientePizzasApp
 			// aapt resource value: 0x7f060002
 			public const int imgDP = 2131099650;
 			
+			// aapt resource value: 0x7f06002b
+			public const int imgMain = 2131099691;
+			
 			// aapt resource value: 0x7f060000
 			public const int item_touch_helper_previous_elevation = 2131099648;
 			
 			// aapt resource value: 0x7f06000c
 			public const int linearLayout2 = 2131099660;
 			
-			// aapt resource value: 0x7f06003b
-			public const int menu_edit = 2131099707;
+			// aapt resource value: 0x7f060040
+			public const int menu_edit = 2131099712;
 			
-			// aapt resource value: 0x7f06003f
-			public const int menu_preferences = 2131099711;
+			// aapt resource value: 0x7f060044
+			public const int menu_preferences = 2131099716;
+			
+			// aapt resource value: 0x7f060041
+			public const int menu_save = 2131099713;
+			
+			// aapt resource value: 0x7f06002f
+			public const int myButton = 2131099695;
+			
+			// aapt resource value: 0x7f060028
+			public const int myButtonLogin2 = 2131099688;
 			
 			// aapt resource value: 0x7f06003c
-			public const int menu_save = 2131099708;
+			public const int pedidoRV = 2131099708;
 			
-			// aapt resource value: 0x7f06002d
-			public const int myButton = 2131099693;
+			// aapt resource value: 0x7f060043
+			public const int pedidos = 2131099715;
 			
-			// aapt resource value: 0x7f060027
-			public const int myButtonLogin2 = 2131099687;
+			// aapt resource value: 0x7f060042
+			public const int perfil = 2131099714;
 			
-			// aapt resource value: 0x7f06003a
-			public const int pedidoRV = 2131099706;
+			// aapt resource value: 0x7f060033
+			public const int recyclerView = 2131099699;
 			
-			// aapt resource value: 0x7f06003e
-			public const int pedidos = 2131099710;
+			// aapt resource value: 0x7f060034
+			public const int recyclerViewCarrito = 2131099700;
 			
-			// aapt resource value: 0x7f06003d
-			public const int perfil = 2131099709;
-			
-			// aapt resource value: 0x7f060031
-			public const int recyclerView = 2131099697;
+			// aapt resource value: 0x7f06003b
+			public const int rvpedidoProducto = 2131099707;
 			
 			// aapt resource value: 0x7f060032
-			public const int recyclerViewCarrito = 2131099698;
+			public const int spCategorias = 2131099698;
 			
-			// aapt resource value: 0x7f060039
-			public const int rvpedidoProducto = 2131099705;
+			// aapt resource value: 0x7f06001d
+			public const int textView1 = 2131099677;
 			
-			// aapt resource value: 0x7f060030
-			public const int spCategorias = 2131099696;
+			// aapt resource value: 0x7f060020
+			public const int textView12 = 2131099680;
 			
-			// aapt resource value: 0x7f06001c
-			public const int textView1 = 2131099676;
+			// aapt resource value: 0x7f06001a
+			public const int textView1pedido = 2131099674;
 			
 			// aapt resource value: 0x7f06001f
-			public const int textView12 = 2131099679;
+			public const int textView2 = 2131099679;
 			
-			// aapt resource value: 0x7f060019
-			public const int textView1pedido = 2131099673;
-			
-			// aapt resource value: 0x7f06001e
-			public const int textView2 = 2131099678;
-			
-			// aapt resource value: 0x7f060024
-			public const int textView22 = 2131099684;
+			// aapt resource value: 0x7f060025
+			public const int textView22 = 2131099685;
 			
 			// aapt resource value: 0x7f060017
 			public const int textView2Cuenta = 2131099671;
 			
-			// aapt resource value: 0x7f06001b
-			public const int textView2pedido = 2131099675;
+			// aapt resource value: 0x7f06001c
+			public const int textView2pedido = 2131099676;
 			
-			// aapt resource value: 0x7f06001d
-			public const int textView3 = 2131099677;
-			
-			// aapt resource value: 0x7f060021
-			public const int textView32 = 2131099681;
+			// aapt resource value: 0x7f06001e
+			public const int textView3 = 2131099678;
 			
 			// aapt resource value: 0x7f060022
-			public const int textView323 = 2131099682;
+			public const int textView32 = 2131099682;
 			
 			// aapt resource value: 0x7f060023
-			public const int textView324 = 2131099683;
+			public const int textView323 = 2131099683;
+			
+			// aapt resource value: 0x7f060024
+			public const int textView324 = 2131099684;
 			
 			// aapt resource value: 0x7f060018
 			public const int textView3Cantidad = 2131099672;
 			
-			// aapt resource value: 0x7f06001a
-			public const int textView3pedido = 2131099674;
+			// aapt resource value: 0x7f06001b
+			public const int textView3pedido = 2131099675;
 			
 			// aapt resource value: 0x7f060006
 			public const int toolbar = 2131099654;
@@ -302,8 +311,8 @@ namespace ClientePizzasApp
 			// aapt resource value: 0x7f06000e
 			public const int txtCantidad = 2131099662;
 			
-			// aapt resource value: 0x7f060034
-			public const int txtCantidadArticulos = 2131099700;
+			// aapt resource value: 0x7f060036
+			public const int txtCantidadArticulos = 2131099702;
 			
 			// aapt resource value: 0x7f060005
 			public const int txtCantidadDP = 2131099653;
@@ -314,17 +323,17 @@ namespace ClientePizzasApp
 			// aapt resource value: 0x7f060015
 			public const int txtCategoriaP = 2131099669;
 			
-			// aapt resource value: 0x7f060037
-			public const int txtCodigo = 2131099703;
+			// aapt resource value: 0x7f060039
+			public const int txtCodigo = 2131099705;
 			
-			// aapt resource value: 0x7f060036
-			public const int txtCodigoTexto = 2131099702;
+			// aapt resource value: 0x7f060038
+			public const int txtCodigoTexto = 2131099704;
 			
-			// aapt resource value: 0x7f06002c
-			public const int txtContraseña = 2131099692;
+			// aapt resource value: 0x7f06002e
+			public const int txtContraseña = 2131099694;
 			
-			// aapt resource value: 0x7f060026
-			public const int txtContraseñaLogin2 = 2131099686;
+			// aapt resource value: 0x7f060027
+			public const int txtContraseñaLogin2 = 2131099687;
 			
 			// aapt resource value: 0x7f060009
 			public const int txtDescripcion = 2131099657;
@@ -335,8 +344,11 @@ namespace ClientePizzasApp
 			// aapt resource value: 0x7f060013
 			public const int txtDescripcionP = 2131099667;
 			
-			// aapt resource value: 0x7f060038
-			public const int txtNada = 2131099704;
+			// aapt resource value: 0x7f06003e
+			public const int txtIdPerfilUsuario = 2131099710;
+			
+			// aapt resource value: 0x7f06003a
+			public const int txtNada = 2131099706;
 			
 			// aapt resource value: 0x7f060007
 			public const int txtNombre = 2131099655;
@@ -347,6 +359,9 @@ namespace ClientePizzasApp
 			// aapt resource value: 0x7f060011
 			public const int txtNombreP = 2131099665;
 			
+			// aapt resource value: 0x7f06003d
+			public const int txtNombreUsuarioPerfil = 2131099709;
+			
 			// aapt resource value: 0x7f06000a
 			public const int txtPrecio = 2131099658;
 			
@@ -356,14 +371,14 @@ namespace ClientePizzasApp
 			// aapt resource value: 0x7f060014
 			public const int txtPrecioP = 2131099668;
 			
-			// aapt resource value: 0x7f060035
-			public const int txtTotal = 2131099701;
+			// aapt resource value: 0x7f060037
+			public const int txtTotal = 2131099703;
 			
-			// aapt resource value: 0x7f06002b
-			public const int txtUsuario = 2131099691;
+			// aapt resource value: 0x7f06002d
+			public const int txtUsuario = 2131099693;
 			
-			// aapt resource value: 0x7f060025
-			public const int txtUsuarioLogin2 = 2131099685;
+			// aapt resource value: 0x7f060026
+			public const int txtUsuarioLogin2 = 2131099686;
 			
 			static Id()
 			{
@@ -424,10 +439,13 @@ namespace ClientePizzasApp
 			public const int pedidos = 2130968590;
 			
 			// aapt resource value: 0x7f04000f
-			public const int spinnerLayout = 2130968591;
+			public const int perfilLayout = 2130968591;
 			
 			// aapt resource value: 0x7f040010
-			public const int toolbar = 2130968592;
+			public const int spinnerLayout = 2130968592;
+			
+			// aapt resource value: 0x7f040011
+			public const int toolbar = 2130968593;
 			
 			static Layout()
 			{

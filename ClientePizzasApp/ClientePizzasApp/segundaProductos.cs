@@ -58,7 +58,7 @@ namespace ClientePizzasApp
 
 		void OnItemClick(object sender, int e)
 		{
-			throw new NotImplementedException();
+			//throw new NotImplementedException();
 		}
 		public async Task<List<ProductModel>> obtenerProductosPorPartidas()
 		{
@@ -129,5 +129,42 @@ namespace ClientePizzasApp
 				return null;
 			}
 		}
+public override bool OnCreateOptionsMenu(IMenu menu)
+{
+MenuInflater.Inflate(Resource.Menu.top_menus, menu);
+return base.OnCreateOptionsMenu(menu);
+}
+public override bool OnOptionsItemSelected(IMenuItem item)
+{
+	//Toast.MakeText(this, "Action selected: " + item.TitleFormatted,
+	//	ToastLength.Short).Show();
+
+	if (item.TitleFormatted.ToString() == "Cerrar sesión")
+	{
+		Intent intento = new Intent(this, typeof(MainActivity));
+		StartActivity(intento);
+	}
+	else if (item.TitleFormatted.ToString() == "Save")
+	{
+		Intent intento = new Intent(this, typeof(carrito));
+		StartActivity(intento);
+	}
+	else if (item.TitleFormatted.ToString() == "Edit")
+	{
+		Intent intento = new Intent(this, typeof(MenuActivity));
+		StartActivity(intento);
+	}
+	else if (item.TitleFormatted.ToString() == "Perfil")
+	{
+		Intent intento = new Intent(this, typeof(perfil));
+		StartActivity(intento);
+	}
+	else if (item.TitleFormatted.ToString() == "Pedidos")
+	{
+		Intent intento = new Intent(this, typeof(pedidos));
+		StartActivity(intento);
+	}
+	return base.OnOptionsItemSelected(item);
+}
 }
 }

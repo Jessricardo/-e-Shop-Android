@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
-
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -88,19 +88,21 @@ namespace ClientePizzasApp
 										Bundle esPaquete = new Bundle();
 										esPaquete.PutString("cuenta", items.cuenta);
 										esPaquete.PutString("dinero", items.total.ToString());
+										esPaquete.PutString("idPedido", items.idUsuario.ToString());
 										esIntento.PutExtra("bundle",esPaquete);
+
 										//Toast.MakeText(this, items.cuenta, ToastLength.Long).Show();
 										StartActivity(esIntento);
 									}
 									else
 									{
-										Toast.MakeText(this, "Algo estas haciendo mal PAUL", ToastLength.Short).Show();
+										Toast.MakeText(this, "Algo ha salido mal, lo sentimos. Intente más tarde", ToastLength.Short).Show();
 
 									}
 			}
 			else
 			{
-				Toast.MakeText(this, "a quien quires engañar, aun no estas logueado", ToastLength.Long).Show();
+				Toast.MakeText(this, "No ha iniciado sesión", ToastLength.Long).Show();
 				myValue = preferences.GetString("NotToken", "");
 				Intent intento = new Intent(this, typeof(login2));
 				StartActivity(intento);
@@ -135,8 +137,8 @@ public override bool OnOptionsItemSelected(IMenuItem item)
 			}
 			else if(item.TitleFormatted.ToString()=="Perfil")
 			{
-			//	Intent intento = new Intent(this, typeof(MenuActivity));
-			//	StartActivity(intento);
+Intent intento = new Intent(this, typeof(perfil));
+			StartActivity(intento);
 			}
 			else if(item.TitleFormatted.ToString()=="Pedidos")
 			{
@@ -145,5 +147,6 @@ public override bool OnOptionsItemSelected(IMenuItem item)
 			}
 	return base.OnOptionsItemSelected(item);
 }
+
 }
 }

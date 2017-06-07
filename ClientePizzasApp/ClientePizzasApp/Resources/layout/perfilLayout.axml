@@ -7,39 +7,37 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
     <TextView
-        android:text="Favor de depositar en la siguiente cuenta:"
+        android:text="Correo de usuario:"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:gravity="center" />
+        android:gravity="center"
+        android:textSize="30dp" />
     <TextView
         android:text="Text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2Cuenta"
-        android:gravity="center" />
+        android:gravity="center"
+        android:id="@+id/txtNombreUsuarioPerfil"
+        android:textSize="20dp" />
     <TextView
-        android:text="Por la cantidad de:"
+        android:text="Id de Usuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="25dp" />
+        android:textSize="30dp" />
     <TextView
-        android:text=""
+        android:text="Text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView3Cantidad"
-        android:gravity="center" />
-    <TextView
-        android:text="En el banco de su preferencia."
-        android:layout_width="match_parent"
+        android:id="@+id/txtIdPerfilUsuario"
         android:gravity="center"
-        android:layout_height="wrap_content" />
+        android:textSize="20dp" />
     <Button
-        android:id="@+id/btnDetallesAmenu"
+        android:text="Ir a mis pedidos"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SEGUIR COMPRANDO"
+        android:id="@+id/btnPerfilPedidos"
         android:background="#b300b3"
         android:textColor="#FFFFFF" />
 </LinearLayout>
